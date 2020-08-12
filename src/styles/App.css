@@ -1,3 +1,16 @@
+:root {
+  --color-main: #6c23fd;
+  --color-main-shade: #561cca;
+  --color-main-tint: #b591fe;
+  --color-second: #22aec2;
+  --color-second-tint: #38b6c8;
+  --color-second-shade: #1e9cae;
+  --color-second-shade2: #1b8c9c;
+  --color-contrast: #fab6de;
+  --color-contrast-shade: #f454b3;
+  --color-text-dark: #2d2d2e;
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -8,16 +21,12 @@ body {
   font-family: Arial, Helvetica, sans-serif;
   line-height: 1.4;
   position: relative;
-  color: #4c4c4c;
+  background-color: var(--color-main-tint);
 }
 
 a {
   color: #333;
   text-decoration: none;
-}
-
-.highlight {
-  color: #f0482b;
 }
 
 span.btn {
@@ -27,16 +36,21 @@ span.btn {
   margin-right: auto;
   padding: 0.25rem;
   text-align: center;
-  background-color: #730073;
-  color: #fff;
+  background-color: var(--color-second);
+  color: #ffffff;
   width: 10rem;
   font-size: 1.5rem;
   border-radius: 10px;
+  font-weight: 500;
 }
 
 span.btn:hover {
-  background-color: #993299;
+  background-color: var(--color-second-tint);
   cursor: pointer;
+}
+
+span.btn:active {
+  background-color: var(--color-second-shade);
 }
 
 div.loader {

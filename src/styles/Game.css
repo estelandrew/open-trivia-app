@@ -1,37 +1,67 @@
-div.question-container {
-  width: 90%;
-  padding-top: 2.5%;
-  padding-left: 5%;
+div.game-container {
   text-align: left;
+  position: relative;
+}
+
+div.question-container {
+  width: 100%;
+  padding-top: 1.2rem;
+  text-align: left;
+}
+
+div.question-container-inner {
+  padding-left: 2.5rem;
+  width: 95%;
+}
+
+h2.game-container-heading {
+  background-color: var(--color-main);
+  color: #fff;
+  padding: 0.15rem 0 0.15rem 2.5rem;
+  margin-right: 5rem;
+  font-size: 1.5rem;
 }
 
 p.question {
   width: 90%;
   font-size: 1.25rem;
+  padding-top: 0.5rem;
+}
+
+div.choice-container {
+  width: 100%;
 }
 
 span.choice {
   display: block;
-  margin-top: 1rem;
-  border: 2px solid #e2e4e6;
+  border: 2px solid var(--color-main-tint);
   border-radius: 5px;
   padding: 0.5rem 0 0.5rem 1rem;
   width: 90%;
+  font-weight: 700;
 }
 
 span.choice.concealed:hover {
-  background-color: #993299;
+  background-color: var(--color-main-tint);
+  cursor: pointer;
   color: #fff;
 }
 
 span.choice.concealed:active {
-  background-color: #6b236b;
+  background-color: #a67bfd;
+  border: 2px solid #a67bfd;
   color: #fff;
 }
 
 span.choice.selected {
-  background-color: #993299;
+  background-color: var(--color-main-tint);
+  border: 2px solid var(--color-main-tint);
   color: #fff;
+}
+
+span.btn.next-btn {
+  margin-left: 2.5rem;
+  background-color: var(--color-second-shade);
 }
 
 span.btn.next-btn.hide {
@@ -44,21 +74,129 @@ div.flex-container {
   margin-right: auto;
 }
 
-div.flex-item {
-  width: 50%;
+div.flex-container.choice-container {
+  margin-top: 1rem;
 }
 
-div.flex-item.item-1 span.btn {
+div.flex-container.choice-container:first-of-type {
+  margin-top: 2rem;
+}
+
+div.flex-container.choice-container i.fa.fa-check-circle.eval-icon {
+  margin-top: 0.5rem;
+  margin-left: 1rem;
+  color: green;
+  font-size: 1.5rem;
+}
+
+div.flex-container.choice-container i.fa.fa-times-circle-o.eval-icon {
+  margin-top: 0.5rem;
+  margin-left: 1rem;
+  color: #cc0000;
+  font-size: 1.5rem;
+}
+
+div.flex-container.choice-container i.fa.fa-check-circle.eval-icon.correctAndNotSelected,
+div.flex-container.choice-container i.fa.fa-times-circle-o.eval-icon.correctAndNotSelected {
+  color: #000;
+}
+
+span.eval-text {
+  margin-left: 2.5rem;
+  font-size: 1.25rem;
+}
+
+span.eval-text.correct {
+  margin-left: 2.5rem;
+  color: green;
+}
+
+span.eval-text.incorrect {
+  margin-left: 2.5rem;
+  color: #cc0000;
+}
+
+div.results-container {
+  text-align: center;
+  padding-top: 1.2rem;
+}
+
+p.results-total {
+  margin-top: 5rem;
+  font-size: 1.33rem;
+}
+
+p.results-percentage {
+  margin-top: 3rem;
+  font-size: 1.33rem;
+}
+
+span.highlight {
+  color: var(--color-main);
+  font-weight: 700;
+}
+
+div.results-btns.flex-container {
+  margin-top: 3rem;
+  flex-direction: column;
+  margin-left: auto;
+  margin-right: auto;
+}
+div.results-btns.flex-container div.flex-item {
+  width: 100%;
+}
+
+div.results-btns.flex-container div.flex-item.item-1 span.btn {
   width: 15rem;
-  margin-right: 0.5rem;
   margin-left: auto;
 }
 
-div.flex-item {
-  width: 50%;
+div.results-btns.flex-container div.flex-item.item-2 span.btn {
+  width: 15rem;
 }
 
-div.flex-item.item-2 span.btn {
-  width: 15rem;
-  margin-left: 0.5rem;
+.hide {
+  display: none;
+}
+
+@media screen and (min-width: 800px) {
+  div.question-container-inner {
+    width: 75%;
+  }
+  p.results-total {
+    margin-top: 5rem;
+    font-size: 1.5rem;
+  }
+
+  p.results-percentage {
+    margin-top: 3rem;
+    font-size: 1.5rem;
+  }
+  div.results-btns.flex-container {
+    flex-direction: row;
+  }
+  div.results-btns.flex-container div.flex-item {
+    width: 50%;
+  }
+
+  div.results-btns.flex-container div.flex-item.item-1 span.btn {
+    width: 15rem;
+    margin-right: 0.25rem;
+    margin-left: auto;
+  }
+
+  div.results-btns.flex-container div.flex-item.item-2 span.btn {
+    width: 15rem;
+    margin-left: 0.25rem;
+  }
+
+  .hide {
+    display: none;
+  }
+
+  div.game-container div.loader {
+    position: absolute;
+    top: 5rem;
+    left: calc(50% - 1.875rem);
+  }
 }

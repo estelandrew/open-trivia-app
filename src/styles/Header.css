@@ -1,10 +1,48 @@
 header {
-  background-color: #730073;
-  color: #fff;
-  padding: 0.5rem 0 0 4rem;
-  height: 3rem;
+  color: var(--color-text-dark);
+  font-weight: 900;
+  height: 3.5rem;
+  padding: 0.6rem 1rem 0.6rem 1rem;
 }
 
 h2.main-heading {
   font-size: 1.25rem;
+  border: 2px solid var(--color-main);
+  width: 10rem;
+  text-align: center;
+  color: #fff;
+  background-color: var(--color-main);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border-radius: 5px;
+}
+
+div.header-container div.header-flex-item {
+  width: 50%;
+}
+
+div.header-container div.header-flex-item.item-2 {
+  text-align: right;
+}
+
+div.header-container div.header-flex-item.item-2 i {
+  border: 2px solid var(--color-main);
+  background-color: var(--color-main);
+  color: #fff;
+  font-size: 1.25rem;
+  border-radius: 50%;
+  width: 2rem;
+  height: 2rem;
+  text-align: center;
+  padding-top: 0.25rem;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+div.header-container div.header-flex-item.item-2 i:hover {
+  cursor: pointer;
+}
+
+@media screen and (min-width: 600px) {
+  header {
+    padding: 0.6rem 4rem 0.6rem 4rem;
+  }
 }

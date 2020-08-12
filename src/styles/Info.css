@@ -1,0 +1,34 @@
+div.info-container {
+  padding-top: 1.2rem;
+}
+div.info-container-inner {
+  text-align: left;
+  padding-top: 1.2rem;
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+h2.info-heading {
+  background-color: var(--color-main);
+  color: #fff;
+  padding: 0.15rem 0 0.15rem 2.5rem;
+  margin-right: 5rem;
+  font-size: 1.5rem;
+}
+
+div.info-container p.info-instructions {
+  font-size: 1.25rem;
+  margin-top: 2rem;
+}
+
+div.info-container p.info-note {
+  font-size: 1.25rem;
+  margin-top: 2rem;
+}
+
+a.info-link {
+  text-decoration: underline;
+  color: var(--color-main);
+  font-weight: 700;
+}
