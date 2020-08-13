@@ -79,7 +79,6 @@ function Game(props) {
     } else {
       isCorrect.current = false;
     }
-    console.log(e.target.dataset.index);
     setGame(prev => {
       return {
         ...prev,
@@ -99,8 +98,6 @@ function Game(props) {
         newGameLoading: true
       };
     });
-    await props.resetGameToken();
-    console.log("Token has been reset");
     let res = await props.fetchGameData();
     if (res.code === 0) {
       gameData.current = res.data;
@@ -185,7 +182,7 @@ function Game(props) {
               <br />
               <p className="question">{entities.decode(game.question)}</p>
               {game.choices.map(choice => (
-                <div className="flex-container choice-container">
+                <div key={game.choices.indexOf(choice)} className="flex-container choice-container">
                   <span
                     onClick={evaluateChoice}
                     key={game.choices.indexOf(choice)}
@@ -197,7 +194,7 @@ function Game(props) {
                     {entities.decode(choice)}
                   </span>
                   <i
-                    class={`fa ${game.correctAnswer === choice ? "fa-check-circle" : "fa-times-circle-o"} 
+                    className={`fa ${game.correctAnswer === choice ? "fa-check-circle" : "fa-times-circle-o"} 
                               ${!game.answerRevealed || (game.answerRevealed && game.activeIndex !== game.choices.indexOf(choice) && game.correctAnswer !== choice) ? "hide" : ""} 
                               ${game.activeIndex !== game.choices.indexOf(choice) && game.correctAnswer === choice ? "correctAndNotSelected" : ""}
                               fa-1x eval-icon`}

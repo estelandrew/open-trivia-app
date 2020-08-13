@@ -26,6 +26,8 @@ p.question {
   width: 90%;
   font-size: 1.25rem;
   padding-top: 0.5rem;
+  margin-block-start: 0;
+  margin-block-end: 0;
 }
 
 div.choice-container {
@@ -161,7 +163,7 @@ div.results-btns.flex-container div.flex-item.item-2 span.btn {
 
 @media screen and (min-width: 800px) {
   div.question-container-inner {
-    width: 75%;
+    width: 100%;
   }
   p.results-total {
     margin-top: 5rem;

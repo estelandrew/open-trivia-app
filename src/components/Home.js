@@ -4,7 +4,6 @@ import Overlay from "./Overlay";
 
 function Page(props) {
   const handleGameOverlay = props.handleGameOverlay;
-
   const fieldTerm = useRef(null);
 
   const [categoryState, setCategoryState] = useState({
@@ -21,11 +20,10 @@ function Page(props) {
     gameLoading: false,
     gameRequestCount: 0,
     url: "",
-    token: "94d4c21f6f6952413e39d85f8ddbc20d1980130643560c7475c4df28dd6c8434"
+    token: ""
   });
 
   useEffect(() => {
-    console.log("used effect");
     async function fetchData() {
       const response = await fetch("https://opentdb.com/api_category.php");
       const data = await response.json();
@@ -39,6 +37,23 @@ function Page(props) {
       });
     }
     fetchData();
+  }, []);
+
+  useEffect(() => {
+    async function fetchToken() {
+      const response = await fetch("https://opentdb.com/api_token.php?command=request");
+      const data = await response.json();
+      console.log(data.response_message);
+      if (data.response_code === 0) {
+        setGameState(prev => {
+          return {
+            ...prev,
+            token: data.token
+          };
+        });
+      }
+    }
+    fetchToken();
   }, []);
 
   async function initGame(e, isInitialGame = true) {
@@ -61,8 +76,7 @@ function Page(props) {
       handleGameOverlay();
     } else if (res.code === 1 || res.code === 4) {
       // if not enough questions are left on token to fulfill request, reset token and refetch data
-      const tokenRes = await resetGameToken();
-      console.log(tokenRes, "Token has been reset");
+      await resetGameToken();
       res = await fetchGameData();
       if (res.code === 0) {
         setGameState(prev => {
@@ -93,7 +107,6 @@ function Page(props) {
     const category = gameState.categoryFieldValue;
     const difficulty = gameState.difficultyFieldValue;
     const url = `https://opentdb.com/api.php?amount=${amount}&category=${category}&difficulty=${difficulty}&token=${gameState.token}`;
-    console.log(url);
     const response = await fetch(url);
     const data = await response.json();
     const gameData = data.results;
