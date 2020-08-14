@@ -48,3 +48,23 @@ div.selection-container .selection-element {
   padding-left: 0.5rem;
   color: #4c4c4c;
 }
+
+span.error-text {
+  background-color: #f9e5e5;
+  color: #cc0000;
+  padding: 0.25rem;
+  box-shadow: 0 4px 8px 0 rgba(204, 0, 0, 0.2), 0 6px 20px 0 rgba(204, 0, 0, 0.19);
+}
+
+span.btn.start-btn.disabled {
+  background-color: #90d6e0;
+  cursor: default;
+}
+
+div.additional-info {
+  margin-top: 3rem;
+  text-align: left;
+  width: 25rem;
+  margin-left: auto;
+  margin-right: auto;
+}

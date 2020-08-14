@@ -74,7 +74,7 @@ function Game(props) {
       return;
     }
     selectedIndex.current = e.target.dataset.index;
-    if (e.target.innerText === game.correctAnswer) {
+    if (e.target.innerText.toLowerCase().trim() === game.correctAnswer.toLowerCase().trim()) {
       isCorrect.current = true;
     } else {
       isCorrect.current = false;
@@ -90,6 +90,10 @@ function Game(props) {
     });
   }
 
+  /**
+   * Re-initiates game same selections as previous game
+   * @param {Event} e
+   */
   async function handlePlayAgain(e) {
     i.current = 0;
     setGame(prev => {
@@ -98,8 +102,9 @@ function Game(props) {
         newGameLoading: true
       };
     });
-    let res = await props.fetchGameData();
-    if (res.code === 0) {
+    let res = await props.fetchGameData(props.numParam, props.categoryParam, props.difficultyParam);
+    let success = await props.handleResponse(res);
+    if (success === 0) {
       gameData.current = res.data;
       setGame(prev => {
         return {
@@ -115,12 +120,10 @@ function Game(props) {
           gameInProgress: true
         };
       });
-    } else if (res.code === 1 || res.code === 4) {
-      // if not enough questions are left on token to fulfill request, reset token and refetch data
-      await props.resetGameToken();
-      console.log("Token has been reset");
-      res = await props.fetchGameData();
-      if (res.code === 0) {
+    } else if (success === 4) {
+      res = await props.fetchGameData(props.numParam, props.categoryParam, props.difficultyParam);
+      success = await props.handleResponse(res);
+      if (success === 0) {
         gameData.current = res.data;
         setGame(prev => {
           return {
@@ -137,18 +140,10 @@ function Game(props) {
           };
         });
       } else {
-        alert("There was an error.");
-        return;
+        alert("There was an error resetting token. Please refresh page to start a new session.");
       }
-    } else if (res.code === 2) {
-      console.log("Invalid Parameter");
-      return;
-    } else if (res.code === 3) {
-      console.log("Token not found");
-      return;
     } else {
-      alert("There was an error.");
-      return;
+      alert("There was an error. Please try again.");
     }
   }
 
